@@ -1,0 +1,14 @@
+
+
+.currentSummary{
+    border: 1px solid skyblue;
+    border-radius: 4px;
+    
+}
+.currentSummary > * {
+    margin-left: 10px;
+    margin: 0px 5px;
+}
+.mb{
+    margin-bottom: 1rem;
+}
