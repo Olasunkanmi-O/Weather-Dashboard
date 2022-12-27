@@ -1,14 +1,25 @@
 
-
-.currentSummary{
+.card{
+    border: none;
+    display: grid;
+    gap:15px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+   
+}
+.card > *{
+    background-color: #b0d9ff;
+    border: 0.8px solid skyblue;
+    border-radius: 5px;
+    padding:15px;
+}
+.summary {
     border: 1px solid skyblue;
-    border-radius: 4px;
-    
+    border-radius: 5px;
+    padding: 15px;
 }
-.currentSummary > * {
-    margin-left: 10px;
-    margin: 0px 5px;
+.summary p {
+    margin-bottom: 0;
 }
-.mb{
-    margin-bottom: 1rem;
+.col-lg-3{
+    background-color:#f8f9fa;
 }
