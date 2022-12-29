@@ -67,11 +67,28 @@ function getInput(cityName) {
 
 }
 
-function saveCity() {
-    var savedCity = getCity()
+function displayCity(){
+    var storedCity = getCity()
 
-    var cityName = city.val().trim()
+    storedCity.forEach(function(city, index ) {
+      $('#history').prepend(`
+        <ul>
+            <li>${city}</li>
+        </ul>
+        `)
+    })
+
+
+
+}
+
+
+function saveCity() {
+    var savedCity = getCity();
+
+    var cityName = city.val().trim();
     savedCity.push(cityName)
+    
     localStorage.setItem('cities', JSON.stringify(savedCity))
 }
 
@@ -86,8 +103,16 @@ function init() {
     $('#search-button').on('click', function (event) {
        var cityName = city.val().trim()
         event.preventDefault()
+
+        if(!cityName){
+            return
+        }
+
         getInput(cityName);
         saveCity()
+        displayCity()
+        console.log(getCity())
+       
        
     })
 
@@ -111,36 +136,13 @@ init()
 
 
 
-// function getLocation() {
-//     return JSON.parse(localStorage.getItem('cities')) || []
-// }
-
-
-// function saveLocation() {
-//     var cityName = city.val()
-//     var cities = getLocation();
-//     cities.push(cityName)
-
-//     localStorage.setItem('cities',JSON.stringify(cities))
-
-   
-// }
 
 
 
 
 
 
-// function displayLocation() {
-//     var getCity = getLocation()
 
-//     for (var city of getCity){
-//         $('#history').prepend(`
-//         <ul>
-//             <li>${city}</li>
-//         </ul>
-//         `)
-//     }
 
 //     // getCity.forEach(function(city){
 //     //     $('#history').prepend(`
