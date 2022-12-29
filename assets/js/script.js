@@ -10,7 +10,7 @@ var city = $('#search-input')
 var baseUrl = 'https://api.openweathermap.org/data/2.5/';
 var currentWeather = baseUrl + `weather?&appid=${apiKey}&units=metric&`;
 var forecastWeather = baseUrl + `forecast?&appid=${apiKey}&units=metric&`
-var cityName = city.val()
+
 
 
 
@@ -67,61 +67,74 @@ function getInput(cityName) {
 
 }
 
-
-
-function getLocation() {
-    return JSON.parse(localStorage.getItem('cities')) || []
-}
-
-
-function saveLocation() {
-    var cityName = city.val()
-    var cities = getLocation();
-    cities.push(cityName)
-
-    localStorage.setItem('cities',JSON.stringify(cities))
-
-   
-}
-
-
-
-
-
-
-function displayLocation() {
-    var getCity = localStorage.getItem('cities', JSON.stringify(existingCity))
-
-    for (var city of getCity){
-        $('#history').prepend(`
-        <ul>
-            <li>${city}</li>
-        </ul>
-        `)
-    }
-
-    // getCity.forEach(function(city){
-    //     $('#history').prepend(`
-    //     <ul>
-    //         <li>${city}</li>
-    //     </ul>
-    //     `)
-    // })
-    
-}
-
-
 function init() {
     $('#search-button').on('click', function (event) {
+       var cityName = city.val().trim()
         event.preventDefault()
-        
         getInput(cityName);
-        saveLocation();
-        
-        displayLocation();
-        
+       
     })
 
 }
 
 init()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function getLocation() {
+//     return JSON.parse(localStorage.getItem('cities')) || []
+// }
+
+
+// function saveLocation() {
+//     var cityName = city.val()
+//     var cities = getLocation();
+//     cities.push(cityName)
+
+//     localStorage.setItem('cities',JSON.stringify(cities))
+
+   
+// }
+
+
+
+
+
+
+// function displayLocation() {
+//     var getCity = getLocation()
+
+//     for (var city of getCity){
+//         $('#history').prepend(`
+//         <ul>
+//             <li>${city}</li>
+//         </ul>
+//         `)
+//     }
+
+//     // getCity.forEach(function(city){
+//     //     $('#history').prepend(`
+//     //     <ul>
+//     //         <li>${city}</li>
+//     //     </ul>
+//     //     `)
+//     // })
+    
+// }
+
+
+
