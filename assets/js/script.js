@@ -6,16 +6,16 @@
 
 
 var apiKey = '6df1a64a30a7da7bf9c5be5027c23bd8';
-var city = 'London'
+var city = $('#search-input')
 var baseUrl = 'https://api.openweathermap.org/data/2.5/';
 var currentWeather = baseUrl + `weather?&appid=${apiKey}&units=metric&`;
 var forecastWeather = baseUrl + `forecast?&appid=${apiKey}&units=metric&`
+var cityName = city.val()
 
 
 
-
-function getInput(city) {
-    $.get(currentWeather + `q=${city}`)
+function getInput(cityName) {
+    $.get(currentWeather + `q=${cityName}`)
         .then(function (currentData) {
 
             console.log(currentData)
@@ -41,10 +41,8 @@ function getInput(city) {
                         <p>Humidity: ${currentData.main.humidity}%</p>
                         <p>Wind Speed: ${currentData.wind.speed}m/s</p>
                         <p class="mb">UV index: ${currentData.wind.speed}</p>                        
-                    </div>
-                    
-                    
-                `)
+                    </div>           
+                    `)
 
 
                     for (var obj of forecastData.list) {
@@ -68,14 +66,62 @@ function getInput(city) {
         )
 
 }
-getInput(city)
 
 
-function init(){
-    $('#search-button').on('click', getInput);
+
+function getLocation() {
+    return JSON.parse(localStorage.getItem('cities')) || []
+}
+
+
+function saveLocation() {
+    var cityName = city.val()
+    var cities = getLocation();
+    cities.push(cityName)
+
+    localStorage.setItem('cities',JSON.stringify(cities))
+
+   
+}
+
+
+
+
+
+
+function displayLocation() {
+    var getCity = localStorage.getItem('cities', JSON.stringify(existingCity))
+
+    for (var city of getCity){
+        $('#history').prepend(`
+        <ul>
+            <li>${city}</li>
+        </ul>
+        `)
+    }
+
+    // getCity.forEach(function(city){
+    //     $('#history').prepend(`
+    //     <ul>
+    //         <li>${city}</li>
+    //     </ul>
+    //     `)
+    // })
+    
+}
+
+
+function init() {
+    $('#search-button').on('click', function (event) {
+        event.preventDefault()
+        
+        getInput(cityName);
+        saveLocation();
+        
+        displayLocation();
+        
+    })
+
 }
 
 init()
-
-
-

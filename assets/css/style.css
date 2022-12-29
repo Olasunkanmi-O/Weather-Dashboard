@@ -1,4 +1,6 @@
-
+.hide{
+    display:none;
+}
 .card{
     border: none;
     display: grid;
@@ -22,4 +24,32 @@
 }
 .col-lg-3{
     background-color:#f8f9fa;
+}
+aside ul {
+    display:flex;
+    flex-direction: column;
+    padding-left: 0px;
+}
+aside form button {
+    border: 1px solid #e7e1e1;
+}
+
+input{
+    padding: 5px;
+    border-radius: 5px;
+}
+
+aside ul li{
+    background-color: rgb(192, 192, 189);    
+    list-style: none;
+    padding:5px;
+    border: 1px solid beige;
+    border-radius: 3px;
+}
+aside ul button{
+    justify-items: center;
+    border-radius: 5px;
+    margin-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
