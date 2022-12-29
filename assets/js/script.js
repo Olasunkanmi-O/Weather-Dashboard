@@ -67,11 +67,27 @@ function getInput(cityName) {
 
 }
 
+function saveCity() {
+    var savedCity = getCity()
+
+    var cityName = city.val().trim()
+    savedCity.push(cityName)
+    localStorage.setItem('cities', JSON.stringify(savedCity))
+}
+
+
+function getCity () {
+    return JSON.parse(localStorage.getItem('cities')) || []
+   
+}
+
+
 function init() {
     $('#search-button').on('click', function (event) {
        var cityName = city.val().trim()
         event.preventDefault()
         getInput(cityName);
+        saveCity()
        
     })
 
