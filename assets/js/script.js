@@ -18,7 +18,7 @@ function getInput(cityName) {
     $.get(currentWeather + `q=${cityName}`)
         .then(function (currentData) {
 
-            console.log(currentData)
+            
 
             var lon = currentData.coord.lon;
             var lat = currentData.coord.lat;
@@ -69,15 +69,19 @@ function getInput(cityName) {
 
 function displayCity(){
     var storedCity = getCity()
-
+    var cityName = city.val('')
+         
     storedCity.forEach(function(city, index ) {
       $('#history').prepend(`
         <ul>
             <li>${city}</li>
         </ul>
         `)
-    })
 
+    })  
+
+    $('#clearBtn').removeClass('hide')
+    
 
 
 }
@@ -99,23 +103,29 @@ function getCity () {
 }
 
 
+
+
+
 function init() {
     $('#search-button').on('click', function (event) {
        var cityName = city.val().trim()
+
+       
         event.preventDefault()
 
         if(!cityName){
             return
         }
 
+        
         getInput(cityName);
         saveCity()
-        displayCity()
-        console.log(getCity())
-       
-       
+        displayCity() 
+
+               
     })
 
+    
 }
 
 init()
