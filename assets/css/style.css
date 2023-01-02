@@ -48,8 +48,16 @@ aside ul li{
 }
 aside ul button{
     justify-items: center;
+    border-color: #f7f7f7;
     border-radius: 5px;
     margin-top: 5px;
     padding-left: 15px;
     padding-right: 15px;
+}
+
+#search-button{
+    border: 2px solid black;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    margin-left: 5px;
 }
