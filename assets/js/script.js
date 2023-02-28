@@ -19,7 +19,7 @@ function getInput(cityName) {
     $.get(currentWeather + `q=${cityName}`)
         .then(function (currentData) {
 
-            
+
             // inputs from the current date to populate forecast data
             var lon = currentData.coord.lon;
             var lat = currentData.coord.lat;
@@ -67,74 +67,71 @@ function getInput(cityName) {
         )
 
 }
-// function to display locations stored in local storage 
-function displayCity(){
-    var storedCity = getCity()
-    var cityName = city.val('')
-        
-    // looping over the stored cities in local storage to display them on the document
-    storedCity.forEach(function(city, index ) {
-       
-      $('#history').prepend(`
-        <ul>
-            <li>${city}</li> 
-        </ul>       
-        `)
 
-    })  
-    // code to make the clear button visible after input from user
+// function to display locations stored in local storage 
+function displayCity(cities) {
+    var storedCity = JSON.parse(localStorage.getItem('cities'))
+    uniqueStorage = [... new Set(storedCity)]
+    console.log(uniqueStorage)
+    uniqueStorage.forEach((city)=>{
+        $('#history').prepend(`
+        <ul>
+            <li class="cities">${city}</li>
+        </ul>
+        `)
+    })
     $('#clearBtn').removeClass('hide')
     
 }
 
-function clearHistory(){
+function clearHistory() {
+
     $('#history').remove()
     $('section').remove()
     localStorage.clear()
-    
+
 }
 
 // function to store the user's input to local storage 
 function saveCity() {
-    var savedCity = getCity();
+    var cityName = city.val().trim()
+    var storedCity = getCity()
+    storedCity.push(cityName)
 
-    var cityName = city.val().trim();
-    savedCity.push(cityName)
-    
-    localStorage.setItem('cities', JSON.stringify(savedCity))
+    localStorage.setItem('cities', JSON.stringify(storedCity))
+   
 }
 
-// function to get the stored locations from local storage
-function getCity () {
-    return JSON.parse(localStorage.getItem('cities')) || []   
+function getCity (){
+    return JSON.parse(localStorage.getItem('cities')) || []
+    
 }
 
 
 function init() {
 
     $('#search-button').on('click', function (event) {
-       var cityName = city.val().trim()
+        var cityName = city.val().trim()
         //code to prevent form default of refresh   
         event.preventDefault()
         // code to prevent actions if there's no input from user
-        if(!cityName){
+        if (!cityName) {
             return
-        }       
+        }
 
         getInput(cityName);
-        
+
         saveCity()
-        displayCity()    
+        displayCity()
         
-        
-        
-               
-    }) 
-    
+    })
+
     $('#clearBtn').on('click', clearHistory)
-    
-    
+
+
+
 }
+
 
 init()
 
