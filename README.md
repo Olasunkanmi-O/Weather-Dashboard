@@ -57,6 +57,8 @@ This app stems from the fact that, as a user, you are willing to travel to a new
 This project is licensed under the MIT License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+The link to the deployed website https://olasunkanmi-o.github.io/weather-dashboard/ 
+
 ## Contact
 If you have any questions or concerns, please contact me at olasunkanmi.m.owolabi@gmail.com
 
